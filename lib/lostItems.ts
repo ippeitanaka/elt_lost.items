@@ -13,27 +13,73 @@ export interface LostItem {
 }
 
 export async function addLostItem(item: Omit<LostItem, "id">, imageFile?: File): Promise<string> {
+  // 現在のユーザーを確認
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser()
+
+  if (userError) {
+    console.error("User authentication error:", userError)
+    throw new Error(`認証エラー: ${userError.message}`)
+  }
+
+  if (!user) {
+    throw new Error("ログインが必要です")
+  }
+
+  console.log("Current user:", user.email)
+
   let imageUrl = ""
   if (imageFile) {
-    const fileExt = imageFile.name.split(".").pop()
-    const fileName = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}.${fileExt}`
-    const { data, error } = await supabase.storage.from("lost-items-images").upload(fileName, imageFile)
+    try {
+      const fileExt = imageFile.name.split(".").pop()
+      const fileName = `${Date.now()}_${Math.random().toString(36).substr(2, 9)}.${fileExt}`
 
-    if (error) throw error
+      // 既存のバケット名を直接使用
+      const bucketName = "lost-items-images"
 
-    const {
-      data: { publicUrl },
-    } = supabase.storage.from("lost-items-images").getPublicUrl(fileName)
+      console.log("Using bucket:", bucketName)
+      console.log("Uploading file:", fileName)
 
-    imageUrl = publicUrl
+      const { data, error } = await supabase.storage.from(bucketName).upload(fileName, imageFile)
+
+      if (error) {
+        console.error("Image upload failed:", error)
+        throw new Error(`画像のアップロードに失敗しました: ${error.message}`)
+      }
+
+      console.log("Image upload successful:", data)
+
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from(bucketName).getPublicUrl(fileName)
+
+      imageUrl = publicUrl
+      console.log("Public URL:", publicUrl)
+    } catch (error) {
+      console.error("Image upload error:", error)
+      // 画像アップロードが失敗してもアイテム登録は続行
+      console.warn("画像のアップロードに失敗しましたが、アイテムの登録は続行します")
+    }
   }
+
+  console.log("Inserting item:", { ...item, image_url: imageUrl })
 
   const { data, error } = await supabase
     .from("lost_items")
     .insert({ ...item, image_url: imageUrl })
     .select()
 
-  if (error) throw error
+  if (error) {
+    console.error("Database insert error:", error)
+    throw new Error(`データベースエラー: ${error.message}`)
+  }
+
+  if (!data || data.length === 0) {
+    throw new Error("データの挿入に失敗しました")
+  }
+
   return data[0].id
 }
 
@@ -68,12 +114,13 @@ export async function deleteLostItem(id: string): Promise<void> {
   // 関連する画像がある場合、Storageから削除
   if (item?.image_url) {
     const imagePath = item.image_url.split("/").pop() // URLからファイル名を抽出
-    const { error: storageError } = await supabase.storage.from("lost-items-images").remove([imagePath])
+    if (imagePath) {
+      const { error: storageError } = await supabase.storage.from("lost-items-images").remove([imagePath])
 
-    if (storageError) {
-      console.error("Failed to delete image from storage:", storageError)
-      // 画像の削除に失敗してもアイテムは削除されているため、エラーはスローしない
+      if (storageError) {
+        console.error("Failed to delete image from storage:", storageError)
+        // 画像の削除に失敗してもアイテムは削除されているため、エラーはスローしない
+      }
     }
   }
 }
-

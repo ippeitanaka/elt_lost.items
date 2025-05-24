@@ -65,4 +65,3 @@ export default function LoginModal({ isOpen, onClose }: LoginModalProps) {
     </Dialog>
   )
 }
-

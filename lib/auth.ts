@@ -17,4 +17,3 @@ export const getCurrentUser = async () => {
   } = await supabase.auth.getUser()
   return user
 }
-
