@@ -1,4 +1,5 @@
 import type React from "react"
+import Script from "next/script"
 import { AuthProvider } from "../contexts/AuthContext"
 import ErrorBoundary from "../components/ErrorBoundary"
 import { M_PLUS_Rounded_1c } from "next/font/google"
@@ -29,6 +30,21 @@ export default function RootLayout({
   return (
     <html lang="ja" className={mPlusRounded1c.variable}>
       <body className="font-mplus">
+        {/* Google Analytics (GA4) */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-JPXBRWRFWR"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-JPXBRWRFWR');
+          `}
+        </Script>
+        
         <ErrorBoundary>
           <AuthProvider>{children}</AuthProvider>
         </ErrorBoundary>
