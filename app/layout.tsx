@@ -14,7 +14,7 @@ const mPlusRounded1c = M_PLUS_Rounded_1c({
 })
 
 export const metadata = {
-  title: "忘れ物管理アプリ",
+  title: "忘れ物管理",
   description: "忘れ物を簡単に管理するためのアプリケーション",
   icons: {
     icon: "/favicon.png",
