@@ -7,7 +7,7 @@ import "@fontsource/biz-udgothic/japanese-700.css"
 import "./globals.css"
 
 export const metadata = {
-  title: "忘れ物管理アプリ",
+  title: "忘れ物管理",
   description: "忘れ物を簡単に管理するためのアプリケーション",
   icons: {
     icon: "/favicon.png",
