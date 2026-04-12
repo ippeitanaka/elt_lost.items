@@ -2,16 +2,9 @@ import type React from "react"
 import Script from "next/script"
 import { AuthProvider } from "../contexts/AuthContext"
 import ErrorBoundary from "../components/ErrorBoundary"
-import { M_PLUS_Rounded_1c } from "next/font/google"
+import "@fontsource/biz-udpgothic/japanese-400.css"
+import "@fontsource/biz-udpgothic/japanese-700.css"
 import "./globals.css"
-
-// M PLUS Rounded 1cフォントの設定
-const mPlusRounded1c = M_PLUS_Rounded_1c({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-m-plus-rounded-1c",
-})
 
 export const metadata = {
   title: "忘れ物管理アプリ",
@@ -28,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja" className={mPlusRounded1c.variable}>
-      <body className="font-mplus">
+    <html lang="ja">
+      <body className="font-biz">
         {/* Google Analytics (GA4) */}
         <Script
           async

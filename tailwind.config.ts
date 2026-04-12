@@ -20,7 +20,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        mplus: ["var(--font-m-plus-rounded-1c)"],
+        biz: ["BIZ UDPGothic", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
