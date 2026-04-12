@@ -20,7 +20,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        biz: ["BIZ UDPGothic", "sans-serif"],
+        biz: ["BIZ UDGothic", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -2,8 +2,8 @@ import type React from "react"
 import Script from "next/script"
 import { AuthProvider } from "../contexts/AuthContext"
 import ErrorBoundary from "../components/ErrorBoundary"
-import "@fontsource/biz-udpgothic/japanese-400.css"
-import "@fontsource/biz-udpgothic/japanese-700.css"
+import "@fontsource/biz-udgothic/japanese-400.css"
+import "@fontsource/biz-udgothic/japanese-700.css"
 import "./globals.css"
 
 export const metadata = {

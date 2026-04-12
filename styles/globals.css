@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: "BIZ UDPGothic", sans-serif;
+  font-family: "BIZ UDGothic", sans-serif;
 }
 
 @layer utilities {

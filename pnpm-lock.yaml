@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@fontsource/biz-udpgothic':
-        specifier: ^5.2.9
-        version: 5.2.9
+      '@fontsource/biz-udgothic':
+        specifier: ^5.2.7
+        version: 5.2.7
       '@hookform/resolvers':
         specifier: ^3.9.1
         version: 3.9.1(react-hook-form@7.54.1(react@19.0.0))
@@ -209,8 +209,8 @@ packages:
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
 
-  '@fontsource/biz-udpgothic@5.2.9':
-    resolution: {integrity: sha512-4b7/B35XSaHB6zMETyZSg12E4LTPk4N5YxkOoG682RiA4y/Dhuql80m/uD/bvbTwBPUj+FWjQGYwKY+s03gFLA==}
+  '@fontsource/biz-udgothic@5.2.7':
+    resolution: {integrity: sha512-mXtZu8Ni2wfUSXQvD33Pqxkp0dhjjFTAX2nmu9Vz5MDrjEd6e01Jv8vO/imm7mFMRGiwjhNsDmg+wT0DJ9Opmg==}
 
   '@hookform/resolvers@3.9.1':
     resolution: {integrity: sha512-ud2HqmGBM0P0IABqoskKWI6PEf6ZDDBZkFqe2Vnl+mTHCEHzr3ISjjZyCwTjC/qpL25JC9aIDkloQejvMeq0ug==}
@@ -1982,7 +1982,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
-  '@fontsource/biz-udpgothic@5.2.9': {}
+  '@fontsource/biz-udgothic@5.2.7': {}
 
   '@hookform/resolvers@3.9.1(react-hook-form@7.54.1(react@19.0.0))':
     dependencies:
